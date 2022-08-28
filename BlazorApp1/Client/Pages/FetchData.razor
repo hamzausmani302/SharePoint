@@ -1,0 +1,39 @@
+﻿@page "/fetchdata"
+@using BlazorApp1.Shared;
+@using BlazorApp1.Shared.SharedServices;
+@inject IUserService userService;
+@inject RefreshInterface refreshService;
+
+
+<PageTitle>Weather forecast</PageTitle>
+
+<h1>Thgis is where users are displayed from database</h1>
+@if (users != null) { 
+    @foreach (var item in users)
+    {
+        <p>@item.Id  @item.Name</p>
+    }
+}
+
+<LoginPage></LoginPage>
+@code {
+
+
+    public List<User>? users;
+    protected override async Task OnInitializedAsync()
+    {
+        users = await userService.getUsers();
+        refreshService.RefreshRequested += RefreshMe;
+
+
+    }
+    private async void RefreshMe()
+    {
+        //    users.Add(new User() { Id = "22", Name = "ALi hamza" });
+        users = await userService.getUsers();
+        Console.WriteLine("refresh");
+        Thread.Sleep(1);
+        StateHasChanged();
+    }
+
+}

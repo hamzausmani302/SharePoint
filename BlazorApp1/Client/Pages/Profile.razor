@@ -1,0 +1,128 @@
+﻿@page "/profile";
+@using BlazorApp1.Shared;
+@using BlazorApp1.Shared.SharedServices;
+@inject ILocalStorageService localStorage;
+@inject NavigationManager navigator;
+@inject HttpClient http;
+@inject RefreshInterface refreshService;
+@inject IModalService modal;
+
+
+
+<main>
+@if (user != null) { 
+    <h1>UPLOAD FILES Here</h1>
+    <h4>Your files will be saved securely in on our servers</h4>
+    <InputFile OnChange="OnInputFileChange" multiple/>
+    <button type="submit" @onclick=uploadFile>UPLOAD</button>
+    <div class="container row m-3">
+    @foreach (var file in userFiles)
+            {
+
+                //<div class="row container">  <span class="col-4">@file.file_name</span>  <span class="col-4"> <div class="btn-outline-primary  text-center" @onclick="args=>downloadButton(file)">Download</div>  </span>  <span class="col-4"><div class="btn-outline-primary  text-center" @onclick="args=>viewButton(file)">View</div></span> </div>
+                <div class="container col-lg-3">
+                    @if (file.file_ext.Contains("image"))
+                    {
+                        <img src="/icon_image.png" />
+                    }
+                    else if (file.file_ext.Contains("rar") || file.file_ext.Contains("zip")
+                    || file.file_name.Contains("rar") || file.file_name.Contains("zip")
+                    ) {
+                        <img src="/icon_zip.png" />
+                    } else if (file.file_ext.Contains("pdf")) {
+                        <img src="/icon_pdf.png" />
+                    }
+                    else {
+                        <img src="/icon_file.png" />
+                    }
+
+                
+                <p>@file.file_name</p>
+                <div class="row">
+                        <span class="col-6"> <div class="btn-outline-primary  text-center" @onclick="args=>downloadButton(file)">Download</div>  </span>
+                        <span class="col-4"><div class="btn-outline-primary  text-center" @onclick="args=>viewButton(file)">View</div></span>
+                   </div>
+                
+
+            </div>
+    }
+    </div>
+
+}else{
+
+    <h1>ACCESS DENIED BROTHER</h1>
+}
+
+</main>
+@code {
+
+
+    private User? user { get; set; }
+    private bool successfulLogin{ get; set; } = false;
+    private List<FileS3>? userFiles { get; set; }
+    public IReadOnlyList<IBrowserFile> selectedFiles;
+
+    public void viewButton(FileS3 file) {
+        ModalParameters parameters = new ModalParameters();
+        parameters.Add(nameof(Modal.fileOpened), file);
+        modal.Show<Modal>("Test" , parameters);
+        Console.WriteLine("View " + file.file_name);
+    }
+
+    public async  Task downloadButton(FileS3 file) {
+        string url = "/api/file/download/" + file.id;
+        navigator.NavigateTo(url , true);
+    }
+    public async Task uploadFile() {
+        Console.WriteLine("File upload");
+
+        foreach (IBrowserFile file in selectedFiles)
+        {
+            if (file.ContentType != null && file.ContentType != "") { 
+                Stream s = file.OpenReadStream(maxAllowedSize: 5120000);
+                MemoryStream ms = new MemoryStream();
+                await s.CopyToAsync(ms);
+                s.Close();
+
+
+
+                UploadFile fileObj = new UploadFile() { FileName = file.Name, Content = ms.ToArray(), ContentType = file.ContentType };
+
+                Console.WriteLine(file.Name + fileObj);
+
+                var response = await http.PostAsJsonAsync<UploadFile>("api/file", fileObj);
+                userFiles = await http.GetFromJsonAsync<List<FileS3>>("api/file");
+                this.StateHasChanged();
+            }
+
+        }
+
+    }
+    public void OnInputFileChange(InputFileChangeEventArgs e) {
+        selectedFiles = e.GetMultipleFiles();
+        if (selectedFiles[0].ContentType != null && selectedFiles[0].ContentType != "")
+        {
+            Console.WriteLine("file accepted");
+        }
+        else {
+            Console.WriteLine("File not accepted");
+        }
+        Console.WriteLine(selectedFiles.Count.ToString(), " files selected");
+    }
+    protected async  override Task OnInitializedAsync()
+    {
+        refreshService.CallRequestRefresh2();
+        string key = "__user__";
+        successfulLogin = false;
+        user = await localStorage.GetItemAsync<User>(key);
+
+        Console.WriteLine("debug -1" , user.Name);
+
+
+        userFiles = await http.GetFromJsonAsync<List<FileS3>>("api/file");
+        
+        Console.WriteLine(userFiles);
+
+    }
+    
+}

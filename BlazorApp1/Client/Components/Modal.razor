@@ -1,0 +1,57 @@
+﻿@using BlazorApp1.Shared;
+@inject HttpClient http;
+<h1>Modal</h1>
+@if (fileOpened != null) {
+    @if (fileOpened.file_ext.Contains("text"))
+    {
+
+        <p>@textToShow</p>
+    }
+    else if (fileOpened.file_ext.Contains("sheet") ||  fileOpened.file_ext.Contains("csv"))
+    {
+        <img  src="@textToShow" />
+    }
+    else if (fileOpened.file_ext.Contains("image"))
+    {
+        <img  src="@textToShow" />
+    }
+    else
+    {
+        <p>file cannot be displayed</p>
+    }
+    @fileOpened.file_ext
+}
+
+@code {
+
+    [Parameter] public FileS3 fileOpened { get; set; }
+    private DownloadFile fileToDisplay;
+    private String textToShow  = "";
+    protected async  override Task OnInitializedAsync()
+    {
+        Console.WriteLine("F-name" + fileOpened.id);
+
+
+        fileToDisplay = await http.GetFromJsonAsync<DownloadFile>("api/file/" +fileOpened.id );
+        if (fileToDisplay != null) {
+
+
+            textToShow = System.Text.Encoding.UTF8.GetString(fileToDisplay.Content);
+            if(fileOpened.file_ext.Contains("image")){
+
+                string ext = fileOpened.file_name.Split(".").Last<string>();
+                
+
+
+                textToShow = "data:image/" + ext + ";base64," + Convert.ToBase64String(fileToDisplay.Content);
+            }
+            this.StateHasChanged();
+
+
+        }
+
+
+        
+
+    }
+}

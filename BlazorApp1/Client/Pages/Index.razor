@@ -1,0 +1,54 @@
+﻿
+@page "/"
+@using BlazorApp1.Shared.SharedServices;
+@inject RefreshInterface refreshService;
+
+<PageTitle>Index</PageTitle>
+
+
+<SurveyPrompt Title="This is a personal storage space for you" />
+
+<div class="container">
+       
+    <div class="container row justify-content-between">
+        <div class="col-6">
+            <h2>Announcements</h2>
+            <ul class="list-group mb-2">
+                @foreach (string announcement in annoucements)
+                {
+                    <li class="list-group-item">@announcement</li>
+                }
+            </ul>
+        </div>
+        <div class="col-6">
+           <h2>User Info</h2>
+           <div class="container">
+                <p> <span>Username : </span> <span>hamza usmani </span> </p>
+                <p> <span>Email : </span> <span>hamzausmani021@gmail.com </span> </p>
+                
+           </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+@code {
+    List<string> annoucements = new List<string>()
+    {
+        "This is our first test of File Share web application",
+        "Our app is still in testing process",
+    };
+    protected  override void OnInitialized()
+    {
+        refreshService.CallRequestRefresh2();
+       
+
+    }
+
+}
+
+
+

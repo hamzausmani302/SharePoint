@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>7b926fcf-64e4-4a00-b693-079f4f327cb1</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+
+    <PackageReference Include="Blazored.LocalStorage" Version="4.2.0" />
+
+    <PackageReference Include="Blazored.Modal" Version="6.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\BlazorApp1.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,37 @@
+﻿@using BlazorApp1.Shared.SharedServices;
+@using BlazorApp1.Shared;
+@inject IUserService userService;
+@inject NavigationManager navigator;
+@inject RefreshInterface refreshService;
+@inject HttpClient http;
+@inject ILocalStorageService localStorage;
+<h3>loginPage</h3>
+
+<div class="container">
+    EMAIL: <input type="text" @bind-value=@id />
+
+PASSWORD:<input type="text" @bind-value=@name />
+<br />
+<button @onclick=submitHandler>SUBMIT</button>
+    
+</div>
+@code {
+
+
+    public string id = "";
+    public string name = "";
+    public async  Task submitHandler() {
+        Console.WriteLine("test");
+        var response = await http.PostAsJsonAsync<LoginDTO>("/api/user/login" ,new LoginDTO() {Email=id , Password= name });
+        Console.WriteLine(response.StatusCode);
+        if (response.IsSuccessStatusCode) {
+            //user.Content.ReadAsStream();
+            var user = await response.Content.ReadFromJsonAsync<User>();
+            Console.WriteLine(user.Name + user.Email);
+            await localStorage.SetItemAsync<User>("__user__", user);
+            navigator.NavigateTo("/profile" , forceLoad:true);
+
+
+        }
+    }
+}

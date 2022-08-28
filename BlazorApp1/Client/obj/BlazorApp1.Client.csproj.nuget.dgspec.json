@@ -1,0 +1,155 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\DARK VADER\\source\\repos\\BlazorApp1\\BlazorApp1\\Client\\BlazorApp1.Client.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\DARK VADER\\source\\repos\\BlazorApp1\\BlazorApp1\\Client\\BlazorApp1.Client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\DARK VADER\\source\\repos\\BlazorApp1\\BlazorApp1\\Client\\BlazorApp1.Client.csproj",
+        "projectName": "BlazorApp1.Client",
+        "projectPath": "C:\\Users\\DARK VADER\\source\\repos\\BlazorApp1\\BlazorApp1\\Client\\BlazorApp1.Client.csproj",
+        "packagesPath": "C:\\Users\\DARK VADER\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DARK VADER\\source\\repos\\BlazorApp1\\BlazorApp1\\Client\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\DARK VADER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\DARK VADER\\source\\repos\\BlazorApp1\\BlazorApp1\\Shared\\BlazorApp1.Shared.csproj": {
+                "projectPath": "C:\\Users\\DARK VADER\\source\\repos\\BlazorApp1\\BlazorApp1\\Shared\\BlazorApp1.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Blazored.LocalStorage": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "Blazored.Modal": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.AspNetCore.Components.Web": {
+              "target": "Package",
+              "version": "[6.0.8, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[6.0.8, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[6.0.8, 6.0.8]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "browser-wasm": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Users\\DARK VADER\\source\\repos\\BlazorApp1\\BlazorApp1\\Shared\\BlazorApp1.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\DARK VADER\\source\\repos\\BlazorApp1\\BlazorApp1\\Shared\\BlazorApp1.Shared.csproj",
+        "projectName": "BlazorApp1.Shared",
+        "projectPath": "C:\\Users\\DARK VADER\\source\\repos\\BlazorApp1\\BlazorApp1\\Shared\\BlazorApp1.Shared.csproj",
+        "packagesPath": "C:\\Users\\DARK VADER\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DARK VADER\\source\\repos\\BlazorApp1\\BlazorApp1\\Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\DARK VADER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
