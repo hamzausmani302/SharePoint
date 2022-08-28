@@ -1,6 +1,12 @@
 # SharePoint
 app to upload and download personal files in your own personal storage area backed by amazon s3
 
+Frontend:  Blazor Web Assembly for frontend logic and UI
+Backend: .NET core 6 for backend Rest API
+DB: SQL server for database
+Storage: Amazon s3
+IDE : visual studio 2022
+
 !Login Page
 ![LoginPage](https://user-images.githubusercontent.com/37268659/187082236-d214e4ba-322e-459d-b532-7d80de7e770a.PNG)
 
