@@ -11,10 +11,10 @@ namespace BlazorApp1.Shared
         public 
          AWSConfiguration()
         {
-            BucketName = "todo-app-staging";
-            Region = "ap-south-1";
-            AwsAccessKey = "AKIA3FEXHETZWUKA6OO6";
-            AwsSecretAccessKey = "hOZwAACN/e5JLoZncyuTbjjjzvcrUt7+ACHqQTVh";
+            BucketName = "";    //enter bucket name
+            Region = "";          //enter your region
+            AwsAccessKey = "";      //enter access key from Iam roles
+            AwsSecretAccessKey = "";        //enter secret key from iam role
             AwsSessionToken = "";
         }
 
